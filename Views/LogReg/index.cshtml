@@ -1,0 +1,137 @@
+@model yelp.Models.LoginRegViewModel
+@{
+    ViewData["Title"] = "Login / Registration";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <form asp-controller="LogReg" asp-action="Register" method="post">
+                <label asp-for="RegisterVM.FirstName"></label>
+                <input class="form-control" asp-for="RegisterVM.FirstName">
+                @{
+                    if(ViewBag.errors != null)
+                    {
+                        @foreach(string key in ViewBag.errors.Keys)
+                        {
+                            if (key == "FirstName" && ViewBag.errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <label asp-for="RegisterVM.LastName"></label>
+                <input class="form-control" asp-for="RegisterVM.LastName">
+                @{
+                    if(ViewBag.errors != null)
+                    {
+                        @foreach(string key in ViewBag.errors.Keys)
+                        {
+                            if (key == "LastName" && ViewBag.errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <label asp-for="RegisterVM.Email"></label>
+                <input class="form-control" asp-for="RegisterVM.Email">
+                @{
+                    if(ViewBag.errors != null)
+                    {
+                        @foreach(string key in ViewBag.errors.Keys)
+                        {
+                            if (key == "Email" && ViewBag.errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <label asp-for="RegisterVM.RegPassword"></label>
+                <input class="form-control" asp-for="RegisterVM.RegPassword">
+                @{
+                    if(ViewBag.errors != null)
+                    {
+                        @foreach(string key in ViewBag.errors.Keys)
+                        {
+                            if (key == "RegPassword" && ViewBag.errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <label asp-for="RegisterVM.RegConfirmPassword"></label>
+                <input class="form-control" asp-for="RegisterVM.RegConfirmPassword">
+                @{
+                    if(ViewBag.errors != null)
+                    {
+                        @foreach(string key in ViewBag.errors.Keys)
+                        {
+                            if (key == "RegConfirmPassword" && ViewBag.errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <div class="col-md-5">
+            <form asp-controller="LogReg" asp-action="Login" method="post">
+                <label asp-for="LoginVM.LoginEmail"></label>
+                <input class="form-control" asp-for="LoginVM.LoginEmail">
+                @{
+                    if(ViewBag.login_errors != null)
+                    {
+                        @foreach(string key in ViewBag.login_errors.Keys)
+                        {
+                            if (key == "LoginEmail" && ViewBag.login_errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.login_errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <label asp-for="LoginVM.LoginPassword"></label>
+                <input class="form-control" asp-for="LoginVM.LoginPassword">
+                @{
+                    if(ViewBag.login_errors != null)
+                    {
+                        @foreach(string key in ViewBag.login_errors.Keys)
+                        {
+                            if (key == "LoginPassword" && ViewBag.login_errors[key].Errors.Count > 0)
+                            {
+                                foreach(var error in ViewBag.login_errors[key].Errors)
+                                {
+                                    <p class="text-danger font-weight-bold">@error.ErrorMessage</p>
+                                }
+                            }
+                        }
+                    }
+                }
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</div>
