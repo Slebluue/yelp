@@ -9,8 +9,9 @@
     <script src="~/scripts/myscripts.js"></script>
 </head>
 <body>
-    @RenderBody()
-
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
     @RenderSection("scripts", required: false)
 </body>
 </html>

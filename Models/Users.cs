@@ -16,7 +16,7 @@ namespace yelp.Models
         public DateTime Created_At { get; set; }
         public DateTime Updated_At { get; set; }
         public User () {
-            Review = new List<Review>();
+            Reviews = new List<Review>();
         }
 
     }
