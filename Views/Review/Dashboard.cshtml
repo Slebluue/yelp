@@ -1,0 +1,22 @@
+@model yelp.Models.ReviewViewModel
+@{
+    ViewData["Title"] = "Reviews";
+}
+<div class="container">
+    <div class="row">
+        <h1>Welcome, @ViewBag.userName</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-5">
+            <form asp-controller="Review" asp-action="createReview" method="post" enctype="multipart/form-data">
+                <label asp-for="Content"></label>
+                <input class="form-control" asp-for="Content">
+                <label asp-for="Rating"></label>
+                <input class="form-control" asp-for="Rating" min="1" max="5">
+                <label asp-for="Image"></label>
+                <input class="form-control" asp-for="Image" type="File">
+                <input class="btn btn-primary" type="submit" value="Submit Review">
+            </form>
+        </div>
+    </div>
+</div>
