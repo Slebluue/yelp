@@ -43,6 +43,10 @@ namespace yelp.Controllers
         [Route("/listings")]
         public IActionResult Index(string search, string category)
         {
+            if(!CheckLoggedIn())
+            { 
+                return RedirectToAction("Index", "LogReg");
+            } 
             if(search != null)
             {
                 if(category == "Name"){
@@ -75,6 +79,7 @@ namespace yelp.Controllers
         [Route("/create")]
         public IActionResult Create(string Name, string Picture, int Phone, string Category, string Description, string Address)
         {
+            CheckLoggedIn();
             return View("Create");
         }
 

@@ -19,11 +19,27 @@ namespace yelp.Controllers
             _context = context;
         }
 
+        public bool CheckLoggedIn()
+        {
+            int? id = HttpContext.Session.GetInt32("UserId");
+            User LoggedIn = _context.User.SingleOrDefault(user => user.UserId == id);
+            ViewBag.userName = HttpContext.Session.GetString("UserName");
+            ViewBag.User = LoggedIn;
+            if(ViewBag.User != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         [HttpGet]
         [Route("index")]
         [ImportModelState]
         public IActionResult Index()
         {
+            CheckLoggedIn();
             if (TempData["errors"] != null)
             {
                 ViewBag.errors = ModelState;
