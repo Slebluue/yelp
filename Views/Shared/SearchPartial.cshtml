@@ -1,13 +1,10 @@
-<div class="row header">
-    <div class="col-sm-12">
-        <form asp-action="Search" asp-controller="Listing" method="Post">
-            <input type="text" name="searchContent">
-            <select name="categoryContent">
+
+        <form  class="form-inline " asp-action="Search" asp-controller="Listing" method="Post">
+            <input class="form-control" type="text" name="searchContent">
+            <select class="form-control" name="categoryContent">
                 <option value="Name">Name</option>
                 <option value="Category">Category</option>
                 <option value="City">City</option>
             </select>
             <button class="btn btn-default" type="submit">Search</button>
         </form>
-    </div>
-</div>
