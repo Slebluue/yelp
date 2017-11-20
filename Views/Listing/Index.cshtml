@@ -1,0 +1,18 @@
+@using yelp.Models
+@model List<Listing>
+
+@Html.Partial("SearchPartial")
+<div class="row">
+    <div class="col-sm-10">
+        <p>All listings</p>
+        <ul>
+        @foreach (var listing in Model)
+        {
+            <li>@listing.Name</li>
+        }
+        </ul> 
+    </div>
+    <div class="col-sm-2">
+        <p>A Map</p>
+    </div>
+</div>

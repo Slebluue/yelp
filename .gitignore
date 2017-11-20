@@ -27,6 +27,7 @@ obj/
 .vscode/
 wwwroot/lib/
 TestResults/
+Migrations/
 ###################
 # Web publish log #
 ###################
