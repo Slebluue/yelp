@@ -12,8 +12,12 @@ namespace yelp.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public List<Review> Reviews {get; set;}
         public DateTime Created_At { get; set; }
         public DateTime Updated_At { get; set; }
+        public User () {
+            Review = new List<Review>();
+        }
 
     }
 
