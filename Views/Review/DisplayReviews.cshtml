@@ -1,3 +1,4 @@
+@using yelp.Models
 @model yelp.Models.ReviewViewModel
 @{
     ViewData["Title"] = "Reviews";
@@ -7,8 +8,9 @@
         <h1>Welcome, @ViewBag.userName</h1>
     </div>
     <div class="row">
-        <div class="col-md-4 col-md-offset-5">
+        <div class="col-md-6">
             <form asp-controller="Review" asp-action="createReview" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="ListingId" value="@ViewBag.Id">
                 <label asp-for="Content"></label>
                 <input class="form-control" asp-for="Content">
                 <label asp-for="Rating"></label>
@@ -17,6 +19,12 @@
                 <input class="form-control" asp-for="Image" type="File">
                 <input class="btn btn-primary" type="submit" value="Submit Review">
             </form>
+        </div>
+        <div class="col-md-6">
+            @foreach (var review in ViewBag.reviews)
+            {
+                <p>@review.Content</p>
+            }
         </div>
     </div>
 </div>

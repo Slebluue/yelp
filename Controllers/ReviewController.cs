@@ -22,6 +22,21 @@ namespace yelp.Controllers
             _context = context;
             _hostingEnvironment = environment;
         }
+        public bool CheckLoggedIn()
+        {
+            int? id = HttpContext.Session.GetInt32("UserId");
+            User LoggedIn = _context.User.SingleOrDefault(user => user.UserId == id);
+            ViewBag.userName = HttpContext.Session.GetString("UserName");
+            ViewBag.User = LoggedIn;
+            if(ViewBag.User != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         [HttpGet]
         [Route("reviews")]
@@ -42,10 +57,10 @@ namespace yelp.Controllers
         [Route("reviews/{list_id}")]
         public IActionResult DisplayReviews(int list_id)
         {
-            //This isn't just a random request with no one logged in
-            if (HttpContext.Session.GetString("UserName") == null)
+            CheckLoggedIn();
+            if(!_context.Listings.Any(l => l.ListingId == list_id))
             {
-                return RedirectToAction("Index", "LogReg");
+                return RedirectToAction("Index", "Listing");
             }
             else
             {
@@ -54,8 +69,12 @@ namespace yelp.Controllers
                     .OrderByDescending(review => review.Created_At).ToList();
 
                 int ratingSum = selectedReviews.Sum(reviews => reviews.Rating);
-                ratingSum = ratingSum / selectedReviews.Count;
+                if(ratingSum != 0)
+                {
+                    ratingSum = ratingSum / selectedReviews.Count;
+                }
                 
+                ViewBag.Id = list_id;
                 ViewBag.rating = ratingSum;
                 ViewBag.reviews = selectedReviews;
                 return View();
@@ -105,7 +124,7 @@ namespace yelp.Controllers
                         _context.SaveChanges();
                     }
                 }
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("DisplayReviews", new {list_id = submittedReview.ListingId});
             }
         }
         
