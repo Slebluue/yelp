@@ -109,13 +109,16 @@ namespace yelp.Controllers
             }
         }
         
-        public void HelpfulReview(int review_id)
+        [HttpGet]
+        [Route("helpful/{review_id}")]
+        public int HelpfulReview(int review_id)
         {
             Review selectedReview = _context.Reviews.SingleOrDefault(review => review.ReviewId == review_id);
             if (selectedReview != null)
             {
                 selectedReview.Helpful += 1;
             }
+            return selectedReview.Helpful;
         }
         
     }
