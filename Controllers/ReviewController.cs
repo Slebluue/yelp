@@ -81,8 +81,11 @@ namespace yelp.Controllers
                     if(ModelState.IsValid)
                     {
                         //The SubmittedReview model is valid
+                        Listing selectedListing = _context.Listings.SingleOrDefault(listing => listing.ListingId == submittedReview.ListingId);
+
                         Review newReview = new Review
                         {
+                            Listing = selectedListing,
                             Content = submittedReview.Content,
                             Rating = submittedReview.Rating,
                             User = currentUser

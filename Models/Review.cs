@@ -41,5 +41,6 @@ namespace yelp.Models
         [Required(ErrorMessage = "You must enter a Rating")]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 to 5")]
         public int Rating { get; set; }
+        public int ListingId { get; set; }
     }
 }
