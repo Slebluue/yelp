@@ -1,0 +1,11 @@
+@using yelp.Models
+@model Listing
+
+<div class="row">
+    <div class="col-sm-6">
+        <h1>@Model.Name</h1>
+    </div>
+    <div class="col-sm-6">
+        <a href="/review/@Model.ListingId" class="btn btn-default">Write a Review</a>
+    </div>
+</div>
