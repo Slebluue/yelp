@@ -6,7 +6,7 @@
         <ul>
         @foreach (var listing in Model)
         {
-            <li>@listing.Name</li>
+            <li><a href="/listings/@listing.ListingId">@listing.Name</a></li>
         }
         </ul> 
     </div>

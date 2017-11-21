@@ -67,6 +67,18 @@ namespace yelp.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Route("/listings/{id}")]
+        public IActionResult Listing(int id)
+        {
+            if(!CheckLoggedIn())
+            { 
+                return RedirectToAction("Index", "LogReg");
+            } 
+            Listing model = _context.Listings.SingleOrDefault(l => l.ListingId == id);
+            return View(model);
+        }
+
         [HttpPost]
         [Route("/search")]
         public IActionResult Search(string searchContent, string categoryContent)
